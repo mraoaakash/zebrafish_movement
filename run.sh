@@ -1,10 +1,10 @@
 python3 larval/train_script.py \
-    data=/Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/larvae/data.yaml  \
-    epochs=50  \
-    imgsz=640  \
-    name=First-Run  \
-    batch=8  \
-    save_period=10 \
-    device=mps,  \
-    rect=True  \
-    workers=0 \
+    --data /Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/data.yaml  \
+    --epochs 25  \
+    --imgsz 1920  \
+    --name Larval-Run  \
+    --batch 8  \
+    --save_period 2 \
+    --device mps,  \
+    --rect True  \
+    --workers 0 \

@@ -1,0 +1,12 @@
+train: /Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/larvae/train/images
+val: /Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/larvae/valid/images
+test: /Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/larvae/test/images
+
+nc: 1
+names: ['zebrafish-larvae']
+
+roboflow:
+  workspace: larve
+  project: larval-annotator
+  version: 1
+  license: CC BY 4.0
