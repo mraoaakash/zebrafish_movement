@@ -2,9 +2,8 @@
 #PBS -N Zebrafish_Movement
 #PBS -o Zebrafish_Movement_out.log
 #PBS -e Zebrafish_Movement_err.log
-#PBS -l ncpus=50
+#PBS -l ncpus=100
 #PBS -q gpu
-#PBS -l host=compute3
 
 eval "$(conda shell.bash hook)"
 conda activate zebrafish_movement
