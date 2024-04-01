@@ -1,5 +1,18 @@
+#! /bin/bash
+#PBS -N Zebrafish_Movement
+#PBS -o Zebrafish_Movement_out.log
+#PBS -e Zebrafish_Movement_err.log
+#PBS -l ncpus=50
+#PBS -q gpu
+#PBS -l host=compute3
+
+eval "$(conda shell.bash hook)"
+conda activate zebrafish_movement
+
+
+cd /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval
 python3 larval/train_script.py \
-    --data /Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/data.yaml  \
+    --data /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval/data.yaml  \
     --epochs 25  \
     --imgsz 1920  \
     --name Larval-Run  \
@@ -8,3 +21,4 @@ python3 larval/train_script.py \
     --device mps,  \
     --rect True  \
     --workers 0 \
+    --project /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval \
