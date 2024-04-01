@@ -10,7 +10,7 @@ eval "$(conda shell.bash hook)"
 conda activate zebrafish_movement
 
 
-cd /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval
+cd /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/
 python3 larval/train_script.py \
     --data /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval/data.yaml  \
     --epochs 25  \
