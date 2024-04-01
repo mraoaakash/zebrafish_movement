@@ -21,4 +21,3 @@ python3 larval/train_script.py \
     --device mps,  \
     --rect True  \
     --workers 0 \
-    --project /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval \
