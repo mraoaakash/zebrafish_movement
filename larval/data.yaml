@@ -1,6 +1,6 @@
-train: /Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/larvae/train/images
-val: /Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/larvae/valid/images
-test: /Users/mraoaakash/Documents/research/research-zebrafish/Movement/zebrafish_movement/larval/larvae/test/images
+train: /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval/larvae/train/images
+val: /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval/larvae/valid/images
+test: /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/larval/larvae/test/images
 
 nc: 1
 names: ['zebrafish-larvae']
