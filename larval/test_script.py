@@ -73,7 +73,7 @@ def runner(pre_post,video_path_src, modelpath,savepath, outpath=None):
 
 
                 # Display the annotated frame
-                # cv2.imshow("YOLOv8 Tracking", annotated_frame)
+                cv2.imshow("YOLOv8 Tracking", annotated_frame)
 
 
                 # Break the loop if 'q' is {pre_post}ssed
@@ -87,7 +87,7 @@ def runner(pre_post,video_path_src, modelpath,savepath, outpath=None):
         # Release the video capture object and close the display window
         cap.release()
         out.release()
-        # cv2.destroyAllWindows()
+        cv2.destroyAllWindows()
 
         df.to_csv(f'{savepath}/{fish_name}.csv', index=False)
 
