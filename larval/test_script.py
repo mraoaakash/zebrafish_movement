@@ -73,7 +73,7 @@ def runner(pre_post,video_path_src, modelpath,savepath, outpath=None):
 
 
                 # Display the annotated frame
-                cv2.imshow("YOLOv8 Tracking", annotated_frame)
+                # cv2.imshow("YOLOv8 Tracking", annotated_frame)
 
 
                 # Break the loop if 'q' is {pre_post}ssed
