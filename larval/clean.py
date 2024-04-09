@@ -75,18 +75,29 @@ def cleaner(df):
         # print(indices)
         df.loc[indices,:]=0
 
-    for j in range(2):
-        for i in range (1, leng-2,1):
+    for j in range(5):
+        for i in range (1, leng-3,1):
             if df.iloc[i]['x']==0 or df.iloc[i+1]['x']==0:
                 continue
             dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+1]['x'], df.iloc[i+1]['y'])
             if dist >50:
                 df.at[i+1,'x'] = 0
                 df.at[i+1,'y'] = 0
+
+            if df.iloc[i]['x']==0 or df.iloc[i+2]['x']==0:
+                continue
             dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+2]['x'], df.iloc[i+2]['y'])
             if dist >50:
                 df.at[i+2,'x'] = 0
                 df.at[i+2,'y'] = 0
+            
+            
+            if df.iloc[i]['x']==0 or df.iloc[i+3]['x']==0:
+                continue
+            dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+3]['x'], df.iloc[i+3]['y'])
+            if dist >50:
+                df.at[i+3,'x'] = 0
+                df.at[i+3,'y'] = 0
 
 
     return df
