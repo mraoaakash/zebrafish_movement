@@ -9,6 +9,11 @@ import matplotlib.pyplot as plt
 
 
 
+def zscore_using_apply(x, window):
+    def zscore_func(x):
+        return (x[-1] - x[:-1].mean())/x[:-1].std(ddof=0)
+    return x.rolling(window=window+1).apply(zscore_func)
+
 def clean_data(indir, outdir):
     file_list = os.listdir(indir)
     try:
@@ -64,6 +69,8 @@ def plot(df, outdir):
     plt.tight_layout()
     plt.savefig(outdir, dpi=300)
     plt.close()
+
+    print(zscore_using_apply(df['x'], 50))
 
 def naremover(df):
     # Fills the 0 values in the dataframe with successive values before and after the 0 values
