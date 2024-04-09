@@ -113,7 +113,7 @@ def plotter(indir, outdir):
         # if os.path.exists(outfile):
         #     continue
         contents = pd.read_csv(os.path.join(indir, file))
-        # contents = cleaner(contents)
+        contents = cleaner(contents)
         contents = naremover(contents)
         contents['x'] = (contents['x'] / 1920)*3.3
         contents['y'] = (contents['y'] / 1080)*1.9
