@@ -80,7 +80,7 @@ def cleaner(df):
             if df.iloc[i]['x']==0 or df.iloc[i+1]['x']==0:
                 continue
             dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+1]['x'], df.iloc[i+1]['y'])
-            if dist >100:
+            if dist >50:
                 df.at[i+1,'x'] = 0
                 df.at[i+1,'y'] = 0
 
