@@ -57,21 +57,9 @@ def plot(df, outdir):
     # plt.close()
 
     fig, ax = plt.subplots()
-    x = df['frame']
-    y = df['y']
-    X_Y_Spline = make_interp_spline(x, y)
-    X_ = np.linspace(x.min(), x.max(), 500)
-    Y_ = X_Y_Spline(X_)
 
-    x = df['frame']
-    y = df['x']
-    X_Y_Spline = make_interp_spline(x, y)
-    X_ = np.linspace(x.min(), x.max(), 500)
-    X_ = X_Y_Spline(X_)
-
-
-    ax.plot(df['frame'], X_, color='black', linewidth=0.5)
-    ax.plot(df['frame'], Y_, color='blue', linewidth=0.5)
+    ax.plot(df['frame'], df['x'], color='black', linewidth=0.5)
+    ax.plot(df['frame'], df['y'], color='black', linewidth=0.5)
 
     plt.tight_layout()
     plt.savefig(outdir, dpi=300)
