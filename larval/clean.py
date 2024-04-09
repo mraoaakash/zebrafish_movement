@@ -1,5 +1,6 @@
 import os
 import re
+import math
 import argparse
 import numpy as np
 import pandas as pd
@@ -59,6 +60,33 @@ def naremover(df):
     df = df.fillna(method='ffill')
     return df
 
+def calculate_distance(x1, y1, x2, y2):
+    distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    return distance
+
+def cleaner(df):
+    leng = len(df)
+    # print(leng)
+
+    # convert to 0
+    threshold_y = 1080-214
+    indices = list(df.index[df['y']>threshold_y])
+    if len(indices)>0:
+        # print(indices)
+        df.loc[indices,:]=0
+
+    for j in range(2):
+        for i in range (1, leng-2,1):
+            if df.iloc[i]['x']==0 or df.iloc[i+1]['x']==0:
+                continue
+            dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+1]['x'], df.iloc[i+1]['y'])
+            if dist >100:
+                df.at[i+1,'x'] = 0
+                df.at[i+1,'y'] = 0
+
+
+    return df
+
 
 
 def plotter(indir, outdir):
@@ -72,9 +100,10 @@ def plotter(indir, outdir):
 
     for file in file_list:
         outfile = os.path.join(outdir, file.split('.')[0] + '.png') 
-        if os.path.exists(outfile):
-            continue
+        # if os.path.exists(outfile):
+        #     continue
         contents = pd.read_csv(os.path.join(indir, file))
+        contents = cleaner(contents)
         contents = naremover(contents)
         contents['x'] = (contents['x'] / 1920)*3.3
         contents['y'] = (contents['y'] / 1080)*1.9
