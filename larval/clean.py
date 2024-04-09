@@ -77,7 +77,7 @@ def cleaner(df):
         # print(indices)
         df.loc[indices,:]=0
 
-    for j in range(5):
+    for j in range(10):
         for i in range (1, leng-3,1):
             if df.iloc[i]['x']==0 or df.iloc[i+1]['x']==0:
                 continue
