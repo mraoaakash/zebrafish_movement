@@ -4,8 +4,8 @@ import math
 import argparse
 import numpy as np
 import pandas as pd
-from celluloid import Camera
 import matplotlib.pyplot as plt
+from scipy.interpolate import make_interp_spline, BSpline
 
 
 
@@ -57,9 +57,14 @@ def plot(df, outdir):
     # plt.close()
 
     fig, ax = plt.subplots()
+    x = df['x']
+    y = df['y']
+    X_Y_Spline = make_interp_spline(x, y)
+    X_ = np.linspace(x.min(), x.max(), 500)
+    Y_ = X_Y_Spline(X_)
 
-    ax.plot(df['frame'], df['x'], color='black', linewidth=0.5)
-    ax.plot(df['frame'], df['y'], color='blue', linewidth=0.5)
+    ax.plot(df['frame'], X_, color='black', linewidth=0.5)
+    ax.plot(df['frame'], Y_, color='blue', linewidth=0.5)
 
     plt.tight_layout()
     plt.savefig(outdir, dpi=300)
