@@ -58,8 +58,15 @@ def plot(df, outdir):
 
     fig, ax = plt.subplots()
 
-    ax.plot(df['frame'], df['x'], color='black', linewidth=0.5)
-    ax.plot(df['frame'], df['y'], color='black', linewidth=0.5)
+    x = df['x'].values
+    y = df['y'].values
+
+    param = np.linspace(0, 1, x.size)
+    spl = make_interp_spline(param, np.c_[x,y], k=2) #(1)
+    xnew, y_smooth = spl(np.linspace(0, 1, x.size * 100)).T #(2)
+
+    ax.plot(df['frame'], xnew, color='black', linewidth=0.5)
+    ax.plot(df['frame'], y_smooth, color='blue', linewidth=0.5)
 
     plt.tight_layout()
     plt.savefig(outdir, dpi=300)
