@@ -24,7 +24,7 @@ def clean_data(indir, outdir):
         def get_centre(x,y,w,h):
             return x + w/2, y + h/2
         
-        df = pd.dataframe(columns=['frame', 'x', 'y'])
+        df = pd.DataFrame(columns=['frame', 'x', 'y'])
 
         for index, row in contents.iterrows():
             x, y = get_centre(row['x'], row['y'], row['w'], row['h'])
