@@ -54,13 +54,11 @@ def plot(df, outdir):
     plt.close()
 
 def naremover(df):
-    # replace 0 or 0.0 with nan
+    # forward fill all 0 values in the dataframe
     df = df.replace(0, np.nan)
-    df = df.replace(0.0, np.nan)
-
-    # forward extrapolation
-    df = df.ffill()
+    df = df.fillna(method='ffill')
     return df
+
 
 
 def plotter(indir, outdir):
