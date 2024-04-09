@@ -28,3 +28,6 @@ if __name__ == '__main__':
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--input', type=str, required=True)
     argparser.add_argument('--output', type=str, required=True)
+
+    args = argparser.parse_args()
+    clean_data(args.input, args.output)
