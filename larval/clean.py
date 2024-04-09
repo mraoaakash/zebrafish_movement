@@ -25,14 +25,14 @@ def clean_data(indir, outdir):
             return x + w/2, y + h/2
         
         df = pd.DataFrame(columns=['frame', 'x', 'y'])
+        df['frame'] = contents['frame']
 
         for index, row in contents.iterrows():
             x, y = get_centre(row['x'], row['y'], row['w'], row['h'])
-            df_temp = pd.DataFrame({'frame': row['frame'], 'x': x, 'y': y}, index=index)
-            df = pd.concat([df, df_temp])
-        
+            df.loc[index, 'x'] = x
+            df.loc[index, 'y'] = y
 
-        print(df_temp.head())
+        print(df.head())
 
 
 
