@@ -30,9 +30,14 @@ conda activate zebrafish_movement
 
 cd /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement
 
-python3 larval/test_script.py \
-    --video_path /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/processed_use \
-    --pre_post pre \
-    --modelpath /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/runs/detect/Larval-Run/weights/epoch12.pt \
-    --savepath /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/tracked \
-    --outpath /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/overlay \
+# python3 larval/test_script.py \
+#     --video_path /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/processed_use \
+#     --pre_post pre \
+#     --modelpath /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement/runs/detect/Larval-Run/weights/epoch12.pt \
+#     --savepath /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/tracked \
+#     --outpath /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/overlay \
+
+
+python3 larval/clean.py \
+    --input /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/tracked \
+    --output /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/cleaned_tracked \
