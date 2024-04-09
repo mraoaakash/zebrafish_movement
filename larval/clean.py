@@ -42,6 +42,7 @@ def clean_data(indir, outdir):
 
 
 def plot(df, outdir):
+
     fig, ax = plt.subplots(figsize=(3.3, 1.9))
     # norm df 
     df['x'] = (df['x'] / 1920)*3.3
@@ -53,7 +54,7 @@ def plot(df, outdir):
     ax.axis('off')
     plt.tight_layout()
     plt.savefig(outdir, dpi=300)
-    return
+    plt.close()
 
 
 
@@ -74,11 +75,6 @@ def plotter(indir, outdir):
         # print(contents.head())
 
         plot(contents, outdir)
-
-
-        pass
-
-    return
 
 
 if __name__ == '__main__':
