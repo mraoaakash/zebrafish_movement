@@ -4,8 +4,22 @@ import math
 import argparse
 import numpy as np
 import pandas as pd
+from celluloid import Camera
 import matplotlib.pyplot as plt
 
+
+def animate(df, outdir):
+    camera = Camera(plt.figure())
+    fig, ax = plt.subplots(figsize=(3.3, 1.9))
+    for i in range(len(df)):
+        ax.plot(df['x'], df['y'], color='black', linewidth=0.5)
+        ax.set_xlim(0, 3.3)
+        ax.set_ylim(0, 1.9)
+        ax.axis('off')
+        camera.snap()
+    animation = camera.animate(blit=True)
+    animation.save(outdir, fps=30)
+    plt.close()
 
 def clean_data(indir, outdir):
     file_list = os.listdir(indir)
@@ -125,7 +139,9 @@ def plotter(indir, outdir):
 
         print(contents.head())
 
-        plot(contents, outfile)
+        # plot(contents, outfile)
+        animate(contents, outfile)
+
 
 
 if __name__ == '__main__':
