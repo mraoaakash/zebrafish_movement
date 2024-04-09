@@ -29,13 +29,13 @@ def clean_data(indir, outdir):
 
         for index, row in contents.iterrows():
             x, y = get_centre(row['x'], row['y'], row['w'], row['h'])
-            df.loc[index, 'x'] = x
-            df.loc[index, 'y'] = y
+            df.loc[index, 'x'] = round(x, 2)
+            df.loc[index, 'y'] = round(y, 2)
 
         print(df.head())
 
-
-
+        df.to_csv(outfile, index=False)
+        
     return
 
 
