@@ -46,12 +46,21 @@ def clean_data(indir, outdir):
 
 def plot(df, outdir):
 
-    fig, ax = plt.subplots(figsize=(3.3, 1.9))
-    # norm df 
-    ax.plot(df['x'], df['y'], color='black', linewidth=0.5)
-    ax.set_xlim(0, 3.3)
-    ax.set_ylim(0, 1.9)
-    ax.axis('off')
+    # fig, ax = plt.subplots(figsize=(3.3, 1.9))
+    # # norm df 
+    # ax.plot(df['x'], df['y'], color='black', linewidth=0.5)
+    # ax.set_xlim(0, 3.3)
+    # ax.set_ylim(0, 1.9)
+    # ax.axis('off')
+    # plt.tight_layout()
+    # plt.savefig(outdir, dpi=300)
+    # plt.close()
+
+    fig, ax = plt.subplots()
+
+    ax.plot(df['frame'], df['x'], color='black', linewidth=0.5)
+    ax.plot(df['frame'], df['y'], color='blue', linewidth=0.5)
+
     plt.tight_layout()
     plt.savefig(outdir, dpi=300)
     plt.close()
@@ -86,22 +95,6 @@ def cleaner(df):
                 df.at[i+1,'x'] = 0
                 df.at[i+1,'y'] = 0
 
-            # if df.iloc[i]['x']==0 or df.iloc[i+2]['x']==0:
-            #     continue
-            # dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+2]['x'], df.iloc[i+2]['y'])
-            # if dist >15:
-            #     df.at[i+2,'x'] = 0
-            #     df.at[i+2,'y'] = 0
-            
-            
-            # if df.iloc[i]['x']==0 or df.iloc[i+3]['x']==0:
-            #     continue
-            # dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+3]['x'], df.iloc[i+3]['y'])
-            # if dist >20:
-            #     df.at[i+3,'x'] = 0
-            #     df.at[i+3,'y'] = 0
-
-
     return df
 
 
@@ -120,7 +113,7 @@ def plotter(indir, outdir):
         # if os.path.exists(outfile):
         #     continue
         contents = pd.read_csv(os.path.join(indir, file))
-        contents = cleaner(contents)
+        # contents = cleaner(contents)
         contents = naremover(contents)
         contents['x'] = (contents['x'] / 1920)*3.3
         contents['y'] = (contents['y'] / 1080)*1.9
