@@ -74,7 +74,7 @@ def plotter(indir, outdir):
 
         print(contents.head())
 
-        plot(contents, outdir)
+        plot(contents, outfile)
 
 
 if __name__ == '__main__':
