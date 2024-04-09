@@ -19,7 +19,22 @@ def clean_data(indir, outdir):
         if os.path.exists(outfile):
             continue
         contents = pd.read_csv(os.path.join(indir, file))
-        print(contents.head())
+        # print(contents.head())
+
+        def get_centre(x,y,w,h):
+            return x + w/2, y + h/2
+        
+        df = pd.dataframe(columns=['frame', 'x', 'y'])
+
+        for index, row in contents.iterrows():
+            x, y = get_centre(row['x'], row['y'], row['w'], row['h'])
+            df_temp = pd.dataframe({'frame': row['frame'], 'x': x, 'y': y})
+            df = pd.concat([df, df_temp])
+        
+
+        print(df_temp.head())
+
+
 
     return
 
