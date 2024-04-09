@@ -28,7 +28,7 @@ def clean_data(indir, outdir):
 
         for index, row in contents.iterrows():
             x, y = get_centre(row['x'], row['y'], row['w'], row['h'])
-            df_temp = pd.DataFrame({'frame': row['frame'], 'x': x, 'y': y},ignore_index=True)
+            df_temp = pd.DataFrame({'frame': row['frame'], 'x': x, 'y': y}, index=index)
             df = pd.concat([df, df_temp])
         
 
