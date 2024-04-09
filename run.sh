@@ -41,3 +41,4 @@ cd /storage/aakash.rao_asp24/research/research-zebrafish/zebrafish_movement
 python3 larval/clean.py \
     --input /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/tracked \
     --output /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/cleaned_tracked \
+    --plot /storage/aakash.rao_asp24/research/research-zebrafish/data/videos/plots \
