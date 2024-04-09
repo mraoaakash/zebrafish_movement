@@ -45,9 +45,6 @@ def plot(df, outdir):
 
     fig, ax = plt.subplots(figsize=(3.3, 1.9))
     # norm df 
-    df['x'] = (df['x'] / 1920)*3.3
-    df['y'] = (df['y'] / 1080)*1.9
-
     ax.plot(df['x'], df['y'], color='black', linewidth=0.5)
     ax.set_xlim(0, 3.3)
     ax.set_ylim(0, 1.9)
@@ -72,7 +69,10 @@ def plotter(indir, outdir):
         if os.path.exists(outfile):
             continue
         contents = pd.read_csv(os.path.join(indir, file))
-        # print(contents.head())
+        contents['x'] = (contents['x'] / 1920)*3.3
+        contents['y'] = (contents['y'] / 1080)*1.9
+
+        print(contents.head())
 
         plot(contents, outdir)
 
