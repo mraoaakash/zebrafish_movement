@@ -53,6 +53,14 @@ def plot(df, outdir):
     plt.savefig(outdir, dpi=300)
     plt.close()
 
+def naremover(df):
+    # replace 0 or 0.0 with nan
+    df = df.replace(0, np.nan)
+    df = df.replace(0.0, np.nan)
+
+    # forward extrapolation
+    df = df.ffill()
+    return df
 
 
 def plotter(indir, outdir):
@@ -69,6 +77,7 @@ def plotter(indir, outdir):
         if os.path.exists(outfile):
             continue
         contents = pd.read_csv(os.path.join(indir, file))
+        contents = naremover(contents)
         contents['x'] = (contents['x'] / 1920)*3.3
         contents['y'] = (contents['y'] / 1080)*1.9
 
