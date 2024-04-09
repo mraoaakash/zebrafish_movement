@@ -18,7 +18,7 @@ def animate(df, outdir):
         ax.axis('off')
         camera.snap()
     animation = camera.animate(blit=True)
-    animation.save(outdir, fps=30)
+    animation.save(outdir.replace('.png', '.mp4'), writer='imagemagick', fps=30)
     plt.close()
 
 def clean_data(indir, outdir):
