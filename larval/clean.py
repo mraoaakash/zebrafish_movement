@@ -137,9 +137,6 @@ def plotter(indir, outdir):
         contents['x'] = X
         contents['y'] = Y
 
-        contents['x'] = (contents['x'] / 1920)*3.3
-        contents['y'] = (contents['y'] / 1080)*1.9
-
         print(contents.head())
 
         plot(contents, outfile)
