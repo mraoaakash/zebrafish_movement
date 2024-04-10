@@ -105,12 +105,16 @@ def cleaner(df):
         df.loc[indices,:]=0
 
     for i in range(2):
-        for j in range(0, leng-1):
-            dist = calculate_distance(df.loc[j, 'x'], df.loc[j, 'y'], df.loc[j+1, 'x'], df.loc[j+1, 'y'])
-            if dist > 100:
-                df.drop(df.index[j+1], inplace=True)
-                leng -= 1
-                df.reset_index(drop=True, inplace=True)
+        try:
+            for j in range(0, leng-1):
+                dist = calculate_distance(df.loc[j, 'x'], df.loc[j, 'y'], df.loc[j+1, 'x'], df.loc[j+1, 'y'])
+                if dist > 100:
+                    df.drop(df.index[j+1], inplace=True)
+                    # global leng outside the loop
+                    leng = leng - 1
+                    df.reset_index(drop=True, inplace=True)
+        except:
+            continue
     
     df_final = pd.DataFrame(columns=['frame', 'x', 'y'])
     df_final['frame'] = np.arange(0, leng)
