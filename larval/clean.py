@@ -110,9 +110,16 @@ def cleaner(df):
                 continue
             dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+1]['x'], df.iloc[i+1]['y'])
             if dist >50:
-                df.at[i+1,'x'] = 0
-                df.at[i+1,'y'] = 0
+                # delete the row entirely
+                df.drop(df.index[i], inplace=True)
+    
+    df_reset = pd.DataFrame(columns=['frame', 'x', 'y'])
+    df_reset['frame'] = range(1, len(df)+1)
+    for index, row in df.iterrows():
+        df_reset.loc[index, 'x'] = row['x']
+        df_reset.loc[index, 'y'] = row['y']
 
+    df = naremover(df_reset)
 
     return df
 
@@ -136,13 +143,13 @@ def plotter(indir, outdir):
         contents = naremover(contents)
 
         plot(contents, outfile.replace('.png', '_unsmooth.png'))
-        X,Y = smooth(np.array(contents['x']).astype(int), np.array(contents['y']).astype(int))
+        # X,Y = smooth(np.array(contents['x']).astype(int), np.array(contents['y']).astype(int))
 
-        contents['x'] = X
-        contents['y'] = Y
+        # contents['x'] = X
+        # contents['y'] = Y
 
-        print(contents.head())
-        plot(contents, outfile)
+        # print(contents.head())
+        # plot(contents, outfile)
 
 
 
