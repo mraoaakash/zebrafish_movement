@@ -81,7 +81,7 @@ def plot(df, outdir):
 def naremover(df):
     # Fills the 0 values in the dataframe with successive values before and after the 0 values
     df = df.replace(0, np.nan)
-    df = df.interpolate(method='polynomial', order=2)
+    df = df.interpolate(method='slinear', limit_direction='both')
     return df
 
 def calculate_distance(x1, y1, x2, y2):
