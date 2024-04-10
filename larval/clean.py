@@ -68,8 +68,8 @@ def plot(df, outdir):
     # plt.savefig(outdir, dpi=300)
     # plt.close()
 
-    X = df['x'].values
-    Y = df['y'].values
+    X = np.array(df['x'].values)
+    Y = np.array(df['y'].values)
 
     X, Y = smooth(X,Y)
 
