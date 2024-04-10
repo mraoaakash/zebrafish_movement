@@ -44,14 +44,9 @@ def clean_data(indir, outdir):
     return
 
 def smooth(X,Y):
-    # X = np.array([1, 3, 6, 8, 5])
-    # Y = np.array([1, 8, 4, 4, 1])
-    pts = np.vstack((X, Y))
-    # Find the B-spline representation of an N-dimensional curve
-    tck, u = splprep(pts, s=0.0)
-    u_new = np.linspace(u.min(), u.max(), 1000)
-    # Evaluate a B-spline
-    x_new, y_new = splev(u_new, tck)
+    param = np.linspace(0, 1, X.size)
+    spl = make_interp_spline(param, np.c_[X,Y], k=2) #(1)
+    x_new, y_new = spl(np.linspace(0, 1, X.size * 100)).T #(2)
     return x_new, y_new
 
 
@@ -136,7 +131,7 @@ def plotter(indir, outdir):
         contents = naremover(contents)
 
         X,Y = smooth(np.array(contents['x']).astype(int), np.array(contents['y']).astype(int))
-        
+
         contents['x'] = X
         contents['y'] = Y
 
