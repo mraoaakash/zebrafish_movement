@@ -135,14 +135,15 @@ def plotter(indir, outdir):
         contents = cleaner(contents)
         contents = naremover(contents)
 
+        plot(contents, outfile.replace('.png', '_unsmooth.png'))
         X,Y = smooth(np.array(contents['x']).astype(int), np.array(contents['y']).astype(int))
 
         contents['x'] = X
         contents['y'] = Y
 
         print(contents.head())
-
         plot(contents, outfile)
+
 
 
 
