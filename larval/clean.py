@@ -67,7 +67,7 @@ def plot(df, outdir):
     X = np.array(df['x'].values)
     Y = np.array(df['y'].values)
 
-    # X, Y = smooth(X,Y)
+    X, Y = smooth(X,Y)
 
     fig, ax = plt.subplots()
 
