@@ -104,7 +104,7 @@ def cleaner(df):
         # print(indices)
         df.loc[indices,:]=0
 
-    for i in range(2):
+    for i in range(10):
         try:
             for j in range(0, leng-1):
                 dist = calculate_distance(df.loc[j, 'x'], df.loc[j, 'y'], df.loc[j+1, 'x'], df.loc[j+1, 'y'])
