@@ -106,8 +106,8 @@ def cleaner(df):
 
     for j in range(2):
         for i in range (1, leng-2,1):
-            if df.iloc[i]['x']==0 or df.iloc[i+1]['x']==0:
-                continue
+            # if df.iloc[i]['x']==0 or df.iloc[i+1]['x']==0:
+            #     continue
             dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+1]['x'], df.iloc[i+1]['y'])
             if dist >50:
                 # delete the row entirely
