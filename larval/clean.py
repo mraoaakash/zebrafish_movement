@@ -5,8 +5,6 @@ import argparse
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.interpolate import splprep, splev
-from scipy.interpolate import make_interp_spline, BSpline
 
 
 
@@ -83,7 +81,7 @@ def plot(df, outdir):
 def naremover(df):
     # Fills the 0 values in the dataframe with successive values before and after the 0 values
     df = df.replace(0, np.nan)
-    df = df.interpolate(method='linear', limit_direction='both')
+    df = df.interpolate(method='polynomial', order=2)
     return df
 
 def calculate_distance(x1, y1, x2, y2):
