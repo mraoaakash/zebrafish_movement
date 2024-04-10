@@ -112,12 +112,14 @@ def cleaner(df):
             if dist >50:
                 # delete the row entirely
                 df.drop(df.index[i], inplace=True)
+                df.reset_index(drop=True, inplace=True)
+                leng = len(df)
     
     df_reset = pd.DataFrame(columns=['frame', 'x', 'y'])
     df_reset['frame'] = range(1, len(df)+1)
     for index, row in df.iterrows():
-        df_reset.loc[index, 'x'] = row['x']
-        df_reset.loc[index, 'y'] = row['y']
+        df_reset.loc[row['frame']-1, 'x'] = row['x']
+        df_reset.loc[row['frame']-1, 'y'] = row['y']
 
     df = naremover(df_reset)
 
