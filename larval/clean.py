@@ -44,9 +44,10 @@ def clean_data(indir, outdir):
     return
 
 def smooth(X,Y):
-    param = np.linspace(0, 1, X.size)
-    spl = make_interp_spline(param, np.c_[X,Y], k=2) #(1)
-    x_new, y_new = spl(np.linspace(0, 1, X.size * 100)).T #(2)
+    df = pd.DataFrame({'x':X, 'y':Y})
+    smooth_Df = df.rolling(window=5, win_type='gaussian', center=True).mean(std=0.5)
+    x_new = np.array(smooth_Df['x'].values)
+    y_new = np.array(smooth_Df['y'].values)
     return x_new, y_new
 
 
