@@ -104,28 +104,21 @@ def cleaner(df):
         # print(indices)
         df.loc[indices,:]=0
 
-    for j in range(2):
-        for i in range (1, leng-2,1):
-            # if df.iloc[i]['x']==0 or df.iloc[i+1]['x']==0:
-            #     continue
-            dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+1]['x'], df.iloc[i+1]['y'])
-            if dist >50:
-                # delete the row entirely
-                df.drop(df.index[i], inplace=True)
+    for i in range(2):
+        for j in range(0, leng-1):
+            dist = calculate_distance(df.loc[j, 'x'], df.loc[j, 'y'], df.loc[j+1, 'x'], df.loc[j+1, 'y'])
+            if dist > 100:
+                df.drop(df.index[j+1], inplace=True)
+                leng -= 1
                 df.reset_index(drop=True, inplace=True)
-                leng = len(df)
     
-    df_reset = pd.DataFrame(columns=['frame', 'x', 'y'])
-    df_reset['frame'] = range(1, len(df)+1)
+    df_final = pd.DataFrame(columns=['frame', 'x', 'y'])
+    df_final['frame'] = np.arange(0, leng)
     for index, row in df.iterrows():
-        df_reset.loc[row['frame']-1, 'x'] = row['x']
-        df_reset.loc[row['frame']-1, 'y'] = row['y']
+        df_final.loc[df['frame'][index], 'x'] = df['x'][index]
+        df_final.loc[df['frame'][index], 'y'] = df['y'][index]
 
-    df = naremover(df_reset)
-
-    return df
-
-
+    return df_final
 
 def plotter(indir, outdir):
     file_list = os.listdir(indir)
