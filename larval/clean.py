@@ -108,7 +108,7 @@ def cleaner(df):
         try:
             for j in range(0, leng-1):
                 dist = calculate_distance(df.loc[j, 'x'], df.loc[j, 'y'], df.loc[j+1, 'x'], df.loc[j+1, 'y'])
-                if dist > 100:
+                if dist > 80:
                     df.drop(df.index[j+1], inplace=True)
                     # global leng outside the loop
                     leng = leng - 1
