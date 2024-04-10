@@ -51,15 +51,15 @@ def smooth(X,Y):
 
 def plot(df, outdir):
 
-    # fig, ax = plt.subplots(figsize=(3.3, 1.9))
-    # # norm df 
-    # ax.plot(df['x'], df['y'], color='black', linewidth=0.5)
-    # ax.set_xlim(0, 3.3)
-    # ax.set_ylim(0, 1.9)
-    # ax.axis('off')
-    # plt.tight_layout()
-    # plt.savefig(outdir, dpi=300)
-    # plt.close()
+    fig, ax = plt.subplots(figsize=(3.3, 1.9))
+    # norm df 
+    ax.plot(df['x'], df['y'], color='black', linewidth=0.5)
+    ax.set_xlim(0, 3.3)
+    ax.set_ylim(0, 1.9)
+    ax.axis('off')
+    plt.tight_layout()
+    plt.savefig(outdir.replace('.png', '_track.png'), dpi=300)
+    plt.close()
 
     X = np.array(df['x'].values)
     Y = np.array(df['y'].values)
