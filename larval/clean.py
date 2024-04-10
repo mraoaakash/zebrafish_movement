@@ -45,7 +45,7 @@ def clean_data(indir, outdir):
 
 def smooth(X,Y):
     df = pd.DataFrame({'x':X, 'y':Y})
-    smooth_Df = df.rolling(window=5, win_type='gaussian', center=True).mean(std=0.5)
+    smooth_Df = df.rolling(window=50, win_type='gaussian', center=True).mean(std=0.5)
     x_new = np.array(smooth_Df['x'].values)
     y_new = np.array(smooth_Df['y'].values)
     return x_new, y_new
