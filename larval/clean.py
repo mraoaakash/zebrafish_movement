@@ -5,6 +5,7 @@ import argparse
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.interpolate import splprep, splev
 from scipy.interpolate import make_interp_spline, BSpline
 
 
@@ -42,6 +43,17 @@ def clean_data(indir, outdir):
 
     return
 
+def smooth(X,Y):
+    # X = np.array([1, 3, 6, 8, 5])
+    # Y = np.array([1, 8, 4, 4, 1])
+    pts = np.vstack((X, Y))
+    # Find the B-spline representation of an N-dimensional curve
+    tck, u = splprep(pts, s=0.0)
+    u_new = np.linspace(u.min(), u.max(), 1000)
+    # Evaluate a B-spline
+    x_new, y_new = splev(u_new, tck)
+    return x_new, y_new
+
 
 
 def plot(df, outdir):
@@ -56,10 +68,15 @@ def plot(df, outdir):
     # plt.savefig(outdir, dpi=300)
     # plt.close()
 
+    X = df['x'].values
+    Y = df['y'].values
+
+    X, Y = smooth(X,Y)
+
     fig, ax = plt.subplots()
 
-    ax.plot(df['frame'], df['x'], color='black', linewidth=0.5)
-    ax.plot(df['frame'], df['y'], color='blue', linewidth=0.5)
+    ax.plot(df['frame'], X, color='black', linewidth=0.5)
+    ax.plot(df['frame'], Y, color='blue', linewidth=0.5)
 
     plt.tight_layout()
     plt.savefig(outdir, dpi=300)
