@@ -64,8 +64,6 @@ def plot(df, outdir):
     X = np.array(df['x'].values)
     Y = np.array(df['y'].values)
 
-    # X, Y = smooth(X,Y)
-
     fig, ax = plt.subplots()
 
     ax.plot(df['frame'], X, color='black', linewidth=0.5)
@@ -79,7 +77,7 @@ def plot(df, outdir):
 def naremover(df):
     # Fills the 0 values in the dataframe with successive values before and after the 0 values
     df = df.replace(0, np.nan)
-    df = df.interpolate(method='slinear', limit_direction='both')
+    df = df.interpolate(method='linear', limit_direction='both')
     return df
 
 def calculate_distance(x1, y1, x2, y2):
