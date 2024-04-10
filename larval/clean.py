@@ -57,7 +57,7 @@ def smooth(X,Y):
 
     x4 = np.interp(t, t2, x3)
     y4 = np.interp(t, t2, y3)
-    return X,Y
+    return x4, y4
 
 
 def plot(df, outdir):
