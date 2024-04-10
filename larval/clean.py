@@ -58,15 +58,8 @@ def plot(df, outdir):
 
     fig, ax = plt.subplots()
 
-    x = df['x'].values
-    y = df['y'].values
-
-    param = np.linspace(0, 1, x.size)
-    spl = make_interp_spline(param, np.c_[x,y], k=2) #(1)
-    xnew, y_smooth = spl(np.linspace(0, 1, x.size * 100)).T #(2)
-
-    ax.plot(df['frame'], xnew, color='black', linewidth=0.5)
-    ax.plot(df['frame'], y_smooth, color='blue', linewidth=0.5)
+    ax.plot(df['frame'], df['x'], color='black', linewidth=0.5)
+    ax.plot(df['frame'], df['y'], color='blue', linewidth=0.5)
 
     plt.tight_layout()
     plt.savefig(outdir, dpi=300)
@@ -94,14 +87,15 @@ def cleaner(df):
         # print(indices)
         df.loc[indices,:]=0
 
-    for j in range(10):
-        for i in range (1, leng-3,1):
+    for j in range(2):
+        for i in range (1, leng-2,1):
             if df.iloc[i]['x']==0 or df.iloc[i+1]['x']==0:
                 continue
             dist = calculate_distance(df.iloc[i]['x'], df.iloc[i]['y'], df.iloc[i+1]['x'], df.iloc[i+1]['y'])
-            if dist >10:
+            if dist >100:
                 df.at[i+1,'x'] = 0
                 df.at[i+1,'y'] = 0
+
 
     return df
 
