@@ -44,8 +44,8 @@ def clean_data(indir, outdir):
 def smooth(X,Y):
     # moving average
     window = 10
-    X = np.convolve(X, np.ones(window), 'valid') / window
-    Y = np.convolve(Y, np.ones(window), 'valid') / window
+    # X = np.convolve(X, np.ones(window), 'valid') / window
+    # Y = np.convolve(Y, np.ones(window), 'valid') / window
     return X,Y
 
 
