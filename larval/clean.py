@@ -5,6 +5,8 @@ import argparse
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.ndimage import gaussian_filter1d
+
 
 
 
@@ -42,10 +44,19 @@ def clean_data(indir, outdir):
     return
 
 def smooth(X,Y):
+    x , y = X, Y
     # moving average
-    window = 10
-    # X = np.convolve(X, np.ones(window), 'valid') / window
-    # Y = np.convolve(Y, np.ones(window), 'valid') / window
+    t = np.linspace(0, 1, len(x))
+    t2 = np.linspace(0, 1, 100)
+
+    x2 = np.interp(t2, t, x)
+    y2 = np.interp(t2, t, y)
+    sigma = 10
+    x3 = gaussian_filter1d(x2, sigma)
+    y3 = gaussian_filter1d(y2, sigma)
+
+    x4 = np.interp(t, t2, x3)
+    y4 = np.interp(t, t2, y3)
     return X,Y
 
 
