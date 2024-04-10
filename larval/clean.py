@@ -42,13 +42,11 @@ def clean_data(indir, outdir):
     return
 
 def smooth(X,Y):
-    df = pd.DataFrame({'x':X, 'y':Y})
-    smooth_Df = df.rolling(window=1000, win_type='gaussian', center=True).mean(std=0.5)
-    print(smooth_Df.head())
-    x_new = np.array(smooth_Df['x'].values)
-    y_new = np.array(smooth_Df['y'].values)
-    return x_new, y_new
-
+    # moving average
+    window = 10
+    X = np.convolve(X, np.ones(window), 'valid') / window
+    Y = np.convolve(Y, np.ones(window), 'valid') / window
+    return X,Y
 
 
 def plot(df, outdir):
