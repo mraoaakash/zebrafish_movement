@@ -71,7 +71,7 @@ def plot(df, outdir):
     X = np.array(df['x'].values)
     Y = np.array(df['y'].values)
 
-    X, Y = smooth(X,Y)
+    # X, Y = smooth(X,Y)
 
     fig, ax = plt.subplots()
 
@@ -134,6 +134,12 @@ def plotter(indir, outdir):
         contents = pd.read_csv(os.path.join(indir, file))
         contents = cleaner(contents)
         contents = naremover(contents)
+
+        X,Y = smooth(np.array(contents['x']).astype(int), np.array(contents['y']).astype(int))
+        
+        contents['x'] = X
+        contents['y'] = Y
+
         contents['x'] = (contents['x'] / 1920)*3.3
         contents['y'] = (contents['y'] / 1080)*1.9
 
