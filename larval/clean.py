@@ -51,7 +51,7 @@ def smooth(X,Y):
 
     x2 = np.interp(t2, t, x)
     y2 = np.interp(t2, t, y)
-    sigma = 1
+    sigma = 0.5
     x3 = gaussian_filter1d(x2, sigma)
     y3 = gaussian_filter1d(y2, sigma)
 
